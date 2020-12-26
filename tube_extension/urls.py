@@ -7,5 +7,4 @@ urlpatterns = [
     path('', views.VideoFormView.as_view(), name="index"),
     path('video/<pk>', views.WatchVideoView.as_view(), name="detail")
     
-    
     ]

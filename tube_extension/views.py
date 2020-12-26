@@ -25,6 +25,3 @@ class VideoFormView(FormView):
     
 class WatchVideoView(DetailView):
     model = Video
-    
-    
-
