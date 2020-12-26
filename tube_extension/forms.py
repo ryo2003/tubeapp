@@ -7,5 +7,6 @@ class VideoForm(forms.Form):
     
     def save(self):
         data=self.cleaned_data
-        video = Video(title=data['title'],link=data['link'])
+        video_id = data['link'].split("v=")[1].split("&")[0]
+        video = Video(title=data['title'],link=video_id)
         video.save()
