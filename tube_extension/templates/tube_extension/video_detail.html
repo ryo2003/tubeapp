@@ -1,0 +1,9 @@
+{% extends "tube_extension/base.html" %}
+{% load l10n %}
+{% block main %}
+<h2>{{ object.title }}</h2>
+<div>
+    {{ object.link }}
+</div>
+<p><a href="{% url 'delete' object.id %}">削除</a></p>
+{% endblock %}
