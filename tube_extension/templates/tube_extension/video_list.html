@@ -1,0 +1,10 @@
+{% extends "tube_extension/base.html" %}
+
+{% block main %}
+<h2>動画一覧</h2>
+<ol>
+    {% for video in object_list %}
+    <li>{{video.title}}</li>
+    {% endfor %}
+</ol>
+{% endblock %}
