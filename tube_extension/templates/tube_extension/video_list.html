@@ -1,10 +1,40 @@
 {% extends "tube_extension/base.html" %}
 
+
 {% block main %}
-<h2>動画一覧</h2>
-<ol>
-    {% for video in object_list %}
-    <li>{{video.title}}</li>
-    {% endfor %}
-</ol>
+    <div class="addVideoForm">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="追加">
+        </form>
+    </div>
+    
+    
+    <div class="container">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Videos</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if videos %}
+                {% for video in videos %}
+                    <tr>
+                    <td><a href="{% url 'detail' video.id %}">{{video}}</a></td>
+                    </tr>
+                {% endfor %}
+    
+            {% endif %}
+        </tbody>
+      </table>
+    </div>
+    
+   
+            
+
 {% endblock %}
+
+
+

@@ -3,14 +3,28 @@ from django.shortcuts import render
 # Create your views here.
 
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import FormView
 
 from tube_extension.models import Video
+from tube_extension.forms import VideoForm
 
-# ListViewは一覧を簡単に作るためのView, video_list.html を探す
-class Index(ListView):
-    # 一覧するモデルを指定 -> `object_list`で取得可能
-    model = Video
 
-class Detail(DetailView):
+class VideoFormView(FormView):
+    template_name = "tube_extension/video_list.html"
+    form_class = VideoForm
+    success_url = "/"
+    
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['videos'] = Video.objects.all
+        return ctx
+    
+    def form_valid(self,form):
+        form.save()
+        return super().form_valid(form)
+    
+class WatchVideoView(DetailView):
     model = Video
+    
+    
+
